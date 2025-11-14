@@ -28,7 +28,10 @@ def print_playlist(playlist):
 
 # A function that checks if a song exists in the playlist
 def check_song_exists(playlist, name):
-    return name in playlist
+    if name in playlist:
+        return True
+    else:
+        return False
 
 
 # A function that removes a song from the playlist by name
