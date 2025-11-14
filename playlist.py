@@ -37,6 +37,21 @@ def remove_song(playlist, name):
         print(f"The song '{name}' doesn't exist in the playlist. It may have already been removed.")
 
 
+def remove_artist_songs(playlist, artist_name):
+    songs_to_remove = []
+    for song, details in playlist.items():
+        if details["artist"] == artist_name:
+            songs_to_remove.append(song)
+
+    if not songs_to_remove:
+        print(f"No songs by '{artist_name}' were found in the playlist.")
+        return
+
+    for song in songs_to_remove:
+        playlist.pop(song)
+    print(f"All songs by '{artist_name}' were removed from the playlist.")
+
+
 
 def main():
     counter = 0
@@ -69,6 +84,11 @@ def main():
             remove_song(liked_songs, check_song)
             print()
 
+    print_playlist(liked_songs)
+
+    artist_input = input("Enter an artist name to remove all their songs: ")
+    remove_artist_songs(liked_songs, artist_input)
+    print()
     print_playlist(liked_songs)
 
 
